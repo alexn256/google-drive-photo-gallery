@@ -3,17 +3,17 @@ package model
 import java.time.LocalDateTime
 
 /**
- * Represents info and metadata (exif data) of photo.
+ * Metadata (exif data) of photo data class.
  *
  * @author Alexander Naumov.
  */
-class Photo {
-    var name: String = ""
-    var type: String = ""
-    var height: Int = 0
-    var width: Int = 0
-    var date: LocalDateTime? = null
-    var latitude: String = ""
-    var longitude: String = ""
+data class Photo (
+    var name: String = "",
+    var type: String = "",
+    var height: Int = 0,
+    var width: Int = 0,
+    var date: LocalDateTime? = null,
+    var latitude: String = "",
+    var longitude: String = "",
     var device: String = ""
-}
+)

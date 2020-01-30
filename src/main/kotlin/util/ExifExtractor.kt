@@ -7,7 +7,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 /**
- * Extract exif metadata from file.
+ *  Exif metadata extractor.
  *
  * @author Alexander Naumov.
  */
@@ -16,7 +16,7 @@ class ExifExtractor {
     private val dateFormatter: DateTimeFormatter =  DateTimeFormatter.ofPattern("yyyy:MM:dd HH:mm:ss")
 
     /**
-     * Convert File to Photo entity.
+     * Convert [File] to [Photo] entity.
      */
     fun getExif(photo: File): Photo {
         val metadata = ImageMetadataReader.readMetadata(photo)

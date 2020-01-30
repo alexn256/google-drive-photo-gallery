@@ -1,7 +1,7 @@
 package model
 
 /**
- * Represents the photo album.
+ * Photo album data class.
  *
  * @author Alexander Naumov.
  */
