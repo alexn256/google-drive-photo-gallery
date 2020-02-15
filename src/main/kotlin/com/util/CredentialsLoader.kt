@@ -23,11 +23,11 @@ object CredentialsLoader {
 
     /**
      * Load credential from credentials file.
+     * Read client secret JSON file & create [Credential] object.
      *
      * @param httpTransport transport protocol.
      */
     fun load(httpTransport: NetHttpTransport, jsonFactory: JsonFactory): Credential {
-        //read client secret JSON file & create Credential object.
         val filePath = PropertyLoader.getProp("credentialsLocationFile")
         val clientSecretFile = File(filePath)
         if (!clientSecretFile.exists()) {

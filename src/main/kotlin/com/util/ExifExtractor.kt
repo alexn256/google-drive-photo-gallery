@@ -2,7 +2,10 @@ package com.util
 
 import com.drew.imaging.ImageMetadataReader
 import com.model.Photo
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
 import java.io.File
+import java.io.OutputStream
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -11,15 +14,15 @@ import java.time.format.DateTimeFormatter
  *
  * @author Alexander Naumov.
  */
-class ExifExtractor {
+object ExifExtractor {
 
     private val dateFormatter: DateTimeFormatter =  DateTimeFormatter.ofPattern("yyyy:MM:dd HH:mm:ss")
 
     /**
      * Convert [File] to [Photo] entity.
      */
-    fun getExif(photo: File): Photo {
-        val metadata = ImageMetadataReader.readMetadata(photo)
+    fun getExif(ins: ByteArrayInputStream): Photo {
+        val metadata = ImageMetadataReader.readMetadata(ins)
         val exif = Photo()
         metadata.directories.forEach { dir ->
             dir.tags.forEach { tag ->
@@ -40,7 +43,6 @@ class ExifExtractor {
                     "File" -> when(tag.tagName) {
                         "File Name" -> {
                             val fullName = tag.description.split(".")
-                            exif.name = fullName[0]
                             exif.type = fullName[1]
                         }
                     }

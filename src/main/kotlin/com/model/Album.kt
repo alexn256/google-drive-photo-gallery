@@ -6,7 +6,8 @@ package com.model
  * @author Alexander Naumov.
  */
 data class Album (
+    var id: String = "",
     var name:String = "",
     var size:Int = 0,
-    val photos:List<Photo> = listOf()
+    var photos:ArrayList<Photo> = arrayListOf()
 )
