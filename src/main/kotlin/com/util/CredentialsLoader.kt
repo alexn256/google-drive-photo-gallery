@@ -1,4 +1,4 @@
-package util
+package com.util
 
 import com.google.api.client.auth.oauth2.Credential
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp
@@ -31,7 +31,7 @@ object CredentialsLoader {
         val filePath = PropertyLoader.getProp("credentialsLocationFile")
         val clientSecretFile = File(filePath)
         if (!clientSecretFile.exists()) {
-            throw FileNotFoundException("Еhere is no file on this path: $filePath .")
+            throw FileNotFoundException("There is no file on this path: $filePath .")
         }
         val inStream = FileInputStream(clientSecretFile)
         val clientSecrets = GoogleClientSecrets.load(jsonFactory, InputStreamReader(inStream))

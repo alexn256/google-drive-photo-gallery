@@ -1,4 +1,4 @@
-import util.GoogleDriveService
+import com.util.GoogleDriveService
 
 fun main() {
     val service = GoogleDriveService()

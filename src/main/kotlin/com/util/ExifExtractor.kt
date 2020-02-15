@@ -1,7 +1,7 @@
-package util
+package com.util
 
 import com.drew.imaging.ImageMetadataReader
-import model.Photo
+import com.model.Photo
 import java.io.File
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter

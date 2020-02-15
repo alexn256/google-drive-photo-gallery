@@ -1,11 +1,12 @@
-package util
+package com.util
 
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport
 import com.google.api.client.json.jackson2.JacksonFactory
 import com.google.api.services.drive.Drive
-import model.Album
-import model.Photo
+import com.model.Album
+import com.model.Photo
 import java.io.File
+import java.io.IOException
 
 /**
  *
@@ -29,6 +30,9 @@ class GoogleDriveService {
      * Get all [Album]s.
      */
     fun getAlbums():List<Album> {
+        getGoogleSubFolders(null).forEach {folder ->
+            println("Folder ID: ${folder.id} Name: ${folder.name}")
+        }
         return listOf()
     }
 
@@ -59,5 +63,26 @@ class GoogleDriveService {
      */
     fun deletePhoto(name:String):Boolean {
         return false
+    }
+
+    /**
+     *
+     */
+    @Throws(IOException::class)
+    private fun getGoogleSubFolders(parentId:String?):List<com.google.api.services.drive.model.File> {
+        var pageToken:String? = null
+        val list = ArrayList<com.google.api.services.drive.model.File>()
+        val query = if (parentId == null) {
+            " mimeType = 'application/vnd.google-apps.folder' and 'root' in parents"
+        } else {
+            " mimeType = 'application/vnd.google-apps.folder' and '$parentId' in parents"
+        }
+        do {
+            val result = drive.files().list().setQ(query).setSpaces("drive")
+                    .setFields("nextPageToken, files(id, name, createdTime)").setPageToken(pageToken).execute()
+            result.files.forEach { list.add(it) }
+            pageToken = result.nextPageToken
+        } while (parentId != null)
+        return list
     }
 }
