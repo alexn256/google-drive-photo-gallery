@@ -8,7 +8,7 @@ import java.io.File
  *
  * @author Alexander Naumov.
  */
-class GoogleDriveService {
+object GoogleDriveService {
 
     /**
      * Get all [Album]s.
