@@ -3,8 +3,10 @@ package com.view
 import com.model.Album
 import kotlinx.html.body
 import kotlinx.html.h1
+import kotlinx.html.h3
 import kotlinx.html.head
 import kotlinx.html.html
+import kotlinx.html.img
 import kotlinx.html.li
 import kotlinx.html.p
 import kotlinx.html.stream.createHTML
@@ -21,14 +23,14 @@ fun albums(list: List<Album>) = createHTML().html {
                     + "${it.name} ${it.size}"
                 }
                 p {
-                    ul {
-                        it.photos.forEach { photo ->
-                            li {
-                                + photo.id
-                            }
-                            li {
-                               + photo.name
-                            }
+                    it.photos.forEach { photo ->
+                        img {
+                            width = "200p"
+                            height = "200px"
+                            src = photo.webContentLink
+                        }
+                        h3 {
+                            + photo.name
                         }
                     }
                 }

@@ -38,7 +38,7 @@ object GoogleDriveUtils {
         }
         do {
            val result = drive.files().list().setQ(query).setSpaces("drive")
-                    .setFields("nextPageToken, files(id, name)").setPageToken(pageToken).execute()
+                    .setFields("nextPageToken, files(id, name, webContentLink)").setPageToken(pageToken).execute()
             result.files.forEach { list.add(it) }
             pageToken = result.nextPageToken
         } while (pageToken != null)

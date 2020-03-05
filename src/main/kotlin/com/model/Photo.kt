@@ -10,6 +10,7 @@ import java.time.LocalDateTime
 data class Photo(
         var id: String = "",
         var name: String = "",
+        var webContentLink: String = "",
         var type: String = "",
         var height: Int = 0,
         var width: Int = 0,
